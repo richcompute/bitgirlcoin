@@ -5,6 +5,10 @@ import LineChart from './LineChart';
 import ToolTip from './ToolTip';
 import InfoBox from './InfoBox';
 
+import imagehappy from './images/imagehappy.jpg';
+import imagenormal from './images/imageneutral.png';
+import imagesad from './images/imagesad.jpg';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -62,7 +66,7 @@ class App extends Component {
           : null }
         </div>
         <div className='row'>
-          <h1>Image goes here!</h1>
+          <img src={imagehappy} />
         </div>
         <div className='row'>
           <div className='popup'>
