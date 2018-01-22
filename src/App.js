@@ -54,12 +54,15 @@ class App extends Component {
 
       <div className='container'>
         <div className='row'>
-          <h1>30 Day Bitcoin Price Chart</h1>
+          <h1>Bitcoin girl 30 Days Bitcoin Price Chart</h1>
         </div>
         <div className='row'>
           { !this.state.fetchingData ?
           <InfoBox data={this.state.data} />
           : null }
+        </div>
+        <div className='row'>
+          <h1>Image goes here!</h1>
         </div>
         <div className='row'>
           <div className='popup'>

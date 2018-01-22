@@ -20,13 +20,21 @@ class InfoBox extends Component {
       fetch(url).then(r => r.json())
         .then((bitcoinData) => {
           const price = bitcoinData.bpi.USD.rate_float;
-          const change = price - data[0].y;
-          const changeP = (price - data[0].y) / data[0].y * 100;
+          
+          const monthChange = price - data[0].y;
+          const monthChangeP = (price - data[0].y) / data[0].y * 100;
 
+          const dayChange = price - data[data.length-1].y;
+          const dayChangeP = (price - data[data.length-1].y) / data[data.length-1].y * 100;
+          
           this.setState({
             currentPrice: bitcoinData.bpi.USD.rate_float,
-            monthChangeD: change.toLocaleString('us-EN',{ style: 'currency', currency: 'USD' }),
-            monthChangeP: changeP.toFixed(2) + '%',
+            displayMonthChangeD: monthChange.toLocaleString('us-EN',{ style: 'currency', currency: 'USD' }),
+            displayMonthChangeP: monthChangeP.toFixed(2) + '%',
+           
+            displayDayChangeD: dayChange.toLocaleString('us-EN',{ style: 'currency', currency: 'USD' }),
+            displayDayChangeP: dayChangeP.toFixed(2) + '%',
+            
             updatedAt: bitcoinData.time.updated
           })
         })
@@ -49,17 +57,19 @@ class InfoBox extends Component {
             <div className="subtext">{'Updated ' + moment(this.state.updatedAt ).fromNow()}</div>
           </div>
         : null}
-        { this.state.currentPrice ?
+       { this.state.currentPrice ?
           <div id="middle" className='box'>
-            <div className="heading">{this.state.monthChangeD}</div>
-            <div className="subtext">Change Since Last Month (USD)</div>
+            <div className="heading">{this.state.displayDayChangeD}</div>
+            <div className="subtext">Change Since Last Day (USD)</div>
           </div>
-        : null}
-          <div id="right" className='box'>
-            <div className="heading">{this.state.monthChangeP}</div>
-            <div className="subtext">Change Since Last Month (%)</div>
-          </div>
+       : null}
 
+       { this.state.currentPrice ?
+          <div id="right" className='box'>
+            <div className="heading">{this.state.displayDayChangeP}</div>
+            <div className="subtext">Change Since Last Day (%)</div>
+          </div>
+       : null}
       </div>
     );
   }
