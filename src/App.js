@@ -4,10 +4,7 @@ import './App.css';
 import LineChart from './LineChart';
 import ToolTip from './ToolTip';
 import InfoBox from './InfoBox';
-
-import imagehappy from './images/imagehappy.jpg';
-import imagenormal from './images/imageneutral.png';
-import imagesad from './images/imagesad.jpg';
+import EmotionImage from './EmotionImage';
 
 class App extends Component {
   constructor(props) {
@@ -66,7 +63,9 @@ class App extends Component {
           : null }
         </div>
         <div className='row'>
-          <img src={imagehappy} />
+        { !this.state.fetchingData ?
+          <EmotionImage data={this.state.data} />
+        : null }
         </div>
         <div className='row'>
           <div className='popup'>
