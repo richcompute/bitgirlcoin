@@ -10,7 +10,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fetchingData: true,
+      fetchingPrice: true,
+      fetchingHistory: true,
       data: null,
       hoverLoc: null,
       activePoint: null
@@ -23,6 +24,23 @@ class App extends Component {
     })
   }
   componentDidMount(){
+    const getCurrentPrice = () => {
+        const url =  'https://api.coindesk.com/v1/bpi/currentprice.json';
+        
+        fetch(url).then(r => r.json())
+            .then((bitcoinData) => {
+            
+            this.setState({
+                currentPrice: bitcoinData.bpi.USD.rate_float,
+                updatedAt: bitcoinData.time.updated,
+                fetchingPrice : false
+            })
+            })
+        .catch((e) => {
+          console.log(e);
+        });
+    }            
+      
     const getData = () => {
       const url = 'https://api.coindesk.com/v1/bpi/historical/close.json';
 
@@ -41,13 +59,15 @@ class App extends Component {
           }
           this.setState({
             data: sortedData,
-            fetchingData: false
+            fetchingHistory: false
           })
         })
         .catch((e) => {
           console.log(e);
         });
     }
+    
+    getCurrentPrice();
     getData();
   }
   render() {
@@ -58,12 +78,12 @@ class App extends Component {
           <h1>Bitcoin girl 30 Days Bitcoin Price Chart</h1>
         </div>
         <div className='row'>
-          { !this.state.fetchingData ?
-          <InfoBox data={this.state.data} />
+          { (!this.state.fetchingHistory && !this.state.fetchingPrice) ?
+          <InfoBox data={this.state.data} currentPrice={this.state.currentPrice} updatedAt={this.state.updatedAt} />
           : null }
         </div>
         <div className='row'>
-        { !this.state.fetchingData ?
+        { (!this.state.fetchingHistory && !this.state.fetchingPrice) ?
           <EmotionImage data={this.state.data} />
         : null }
         </div>
@@ -74,7 +94,7 @@ class App extends Component {
         </div>
         <div className='row'>
           <div className='chart'>
-            { !this.state.fetchingData ?
+            { (!this.state.fetchingHistory && !this.state.fetchingPrice) ?
               <LineChart data={this.state.data} onChartHover={ (a,b) => this.handleChartHover(a,b) }/>
               : null }
           </div>

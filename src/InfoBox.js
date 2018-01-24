@@ -13,37 +13,26 @@ class InfoBox extends Component {
     }
   }
   componentDidMount(){
-    this.getData = () => {
-      const {data} = this.props;
-      const url = 'https://api.coindesk.com/v1/bpi/currentprice.json';
+      const data = this.props.data;
+      const price = this.props.currentPrice;
+      const updatedAt = this.props.updatedAt;
+      
+      const monthChange = price - data[0].y;
+      const monthChangeP = (price - data[0].y) / data[0].y * 100;
 
-      fetch(url).then(r => r.json())
-        .then((bitcoinData) => {
-          const price = bitcoinData.bpi.USD.rate_float;
+      const dayChange = price - data[data.length-1].y;
+      const dayChangeP = (price - data[data.length-1].y) / data[data.length-1].y * 100;
           
-          const monthChange = price - data[0].y;
-          const monthChangeP = (price - data[0].y) / data[0].y * 100;
-
-          const dayChange = price - data[data.length-1].y;
-          const dayChangeP = (price - data[data.length-1].y) / data[data.length-1].y * 100;
-          
-          this.setState({
-            currentPrice: bitcoinData.bpi.USD.rate_float,
-            displayMonthChangeD: monthChange.toLocaleString('us-EN',{ style: 'currency', currency: 'USD' }),
-            displayMonthChangeP: monthChangeP.toFixed(2) + '%',
-           
-            displayDayChangeD: dayChange.toLocaleString('us-EN',{ style: 'currency', currency: 'USD' }),
-            displayDayChangeP: dayChangeP.toFixed(2) + '%',
-            
-            updatedAt: bitcoinData.time.updated
-          })
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    }
-    this.getData();
-    this.refresh = setInterval(() => this.getData(), 90000);
+      this.setState({
+        currentPrice: price,
+        displayMonthChangeD: monthChange.toLocaleString('us-EN',{ style: 'currency', currency: 'USD' }),
+        displayMonthChangeP: monthChangeP.toFixed(2) + '%',
+       
+        displayDayChangeD: dayChange.toLocaleString('us-EN',{ style: 'currency', currency: 'USD' }),
+        displayDayChangeP: dayChangeP.toFixed(2) + '%',
+        
+        updatedAt: updatedAt
+      })
   }
   componentWillUnmount(){
     clearInterval(this.refresh);
@@ -56,7 +45,14 @@ class InfoBox extends Component {
             <div className="heading">{this.state.currentPrice.toLocaleString('us-EN',{ style: 'currency', currency: 'USD' })}</div>
             <div className="subtext">{'Updated ' + moment(this.state.updatedAt ).fromNow()}</div>
           </div>
-        : null}
+        : 
+              <div id="left" className='box'>
+            <div className="heading">NO PRICE :(</div>
+            <div className="subtext">NO UPDATE :(</div>
+          </div>
+    
+        
+        }
        { this.state.currentPrice ?
           <div id="middle" className='box'>
             <div className="heading">{this.state.displayDayChangeD}</div>
