@@ -2,6 +2,7 @@
   "name": "bitgirlcoin",
   "version": "1.0.0",
   "dependencies": {
+    "@types/react": "^16.0.34",
     "moment": "^2.18.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
