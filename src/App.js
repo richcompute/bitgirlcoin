@@ -75,7 +75,7 @@ class App extends Component {
 
       <div className='container'>
         <div className='row'>
-          <h1>Bitcoin girl 30 Days Bitcoin Price Chart</h1>
+          <h1>Bitcoin Girl 30 Days Bitcoin Price Chart</h1>
         </div>
         <div className='row'>
           { (!this.state.fetchingHistory && !this.state.fetchingPrice) ?
@@ -84,7 +84,7 @@ class App extends Component {
         </div>
         <div className='row'>
         { (!this.state.fetchingHistory && !this.state.fetchingPrice) ?
-          <EmotionImage data={this.state.data} />
+          <EmotionImage data={this.state.data} currentPrice={this.state.currentPrice} updatedAt={this.state.updatedAt} />
         : null }
         </div>
         <div className='row'>
