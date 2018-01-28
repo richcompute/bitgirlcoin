@@ -5,7 +5,7 @@ import LineChart from './LineChart';
 import ToolTip from './ToolTip';
 import InfoBox from './InfoBox';
 import EmotionImage from './EmotionImage';
-import ReactMCSimpleForm from 'react-mailchimp-subscribe-forme'
+import SubscribeForm from './SubscribeForm';
 
 class App extends Component {
   constructor(props) {
@@ -92,35 +92,8 @@ class App extends Component {
               Subscribe to the Daily Bitcoin Girl Email List
           </div>
         <div className='row'>
-            {
-                <ReactMCSimpleForm
-                    fields={[
-                        {
-                            name: 'EMAIL',
-                            props: {
-                                placeholder: 'Your email'
-                            }
-                        },
-                        {
-                            name: 'FNAME',
-                            props: {
-                                placeholder: 'Your name (optional)'
-                            }
-                        }
-                    ]}
-                    u="cac42360aa09aa0531b05b455"
-                    id="16edfda38e"
-                    antSpamFlag="b_f2c1f6436b63551329714d6a9"
-                    mcBaseUrl="https://mc.us14.list-manage.com/subscribe/post-json"
-                    successMsg="You have subscribed to the Daily Bitcoin Girl list!"
-                    failMsg="Failed to subscribe. :("
-                    userAlreadySubscribedMsg="You're already subscribed ! Check your Inbox"
-                    submitButtonText="Subscribe"
-                />
-            }
+            <SubscribeForm/>
         </div>
-
-
         <div className='row'>
           <div className='popup'>
             {this.state.hoverLoc ? <ToolTip hoverLoc={this.state.hoverLoc} activePoint={this.state.activePoint}/> : null}
