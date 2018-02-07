@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import './EmotionImage.css';
 
-import imagehappy from './images/good/1.jpg';
-import imagenormal from './images/neutral/1.png';
-import imagesad from './images/bad/1.jpg';
-
-
 class EmotionImage extends Component {
   constructor(props) {
     super(props);
@@ -22,13 +17,17 @@ class EmotionImage extends Component {
       const dayChange = price - data[data.length-1].y;
       const dayChangeP = (price - data[data.length-1].y) / data[data.length-1].y * 100;
 
+      const imageGood = require('./images/good/1.jpg');
+      const imageBad = require('./images/bad/1.jpg');
+      const imageNeutral = require('./images/neutral/1.png');
+
       var imageToSet;
       if (dayChangeP > 0) {
-        imageToSet = imagehappy;
+        imageToSet = imageGood;
       } else if (dayChangeP < 0) {
-        imageToSet = imagesad;
+        imageToSet = imageBad;
       } else {
-        imageToSet = imagenormal;
+        imageToSet = imageNeutral;
       }
 
     this.setState(
