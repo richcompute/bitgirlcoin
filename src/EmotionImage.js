@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import './EmotionImage.css';
 
-import imagehappy from './images/imagehappy.jpg';
-import imagenormal from './images/imageneutral.png';
-import imagesad from './images/imagesad.jpg';
+import imagehappy from './images/good/1.jpg';
+import imagenormal from './images/neutral/1.png';
+import imagesad from './images/bad/1.jpg';
 
 
 class EmotionImage extends Component {
