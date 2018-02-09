@@ -21,7 +21,7 @@ class SubscribeForm extends Component {
 
     generate() {
         if (this.state.subscribe) {
-
+            return <p>Thank you. You're now subscribed to our Bitgirl Coin mailing list.</p>
         } else {
             return <h2>nothing to show</h2>
         }
@@ -30,8 +30,13 @@ class SubscribeForm extends Component {
     render(){
         return (
             <div>
-            <button onClick={() => this.setState({subscribe:true})}>Subscribe</button>
-        {this.generate()}
+            <form>
+                <p>
+                Email: <input text="text" name="email"/>
+                </p>
+                    <button onClick={() => this.setState({subscribe:true})}>Subscribe</button>
+                {this.generate()}
+            </form>
             </div>
         )
     }
