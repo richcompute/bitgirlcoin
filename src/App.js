@@ -74,7 +74,7 @@ class App extends Component {
 
   render() {
       const formProps = {
-          action: '//xxxx.us13.list-manage.com/subscribe/post?u=695fze434a101fd2a718afddde8&id=72al97ece5',
+          action: '//mailchimp.us14.list-manage.com/subscribe/post?u=cac42360aa09aa0531b05b455&id=16edfda38e',
           messages: {
               inputPlaceholder: "Your email",
               btnLabel: "Subscribe!",
