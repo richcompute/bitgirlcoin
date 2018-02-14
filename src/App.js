@@ -71,7 +71,33 @@ class App extends Component {
     getCurrentPrice();
     getData();
   }
+
   render() {
+      const formProps = {
+          action: '//xxxx.us13.list-manage.com/subscribe/post?u=695fze434a101fd2a718afddde8&id=72al97ece5',
+          messages: {
+              inputPlaceholder: "Your email",
+              btnLabel: "Subscribe!",
+              sending: "Subscription in progress...",
+              success: "Subscribed!",
+              error: "Oops, impossible to register this email!"
+          },
+          styles: {
+              sending: {
+                  fontSize: 18,
+                  color: "auto"
+              },
+              success: {
+                  fontSize: 18,
+                  color: "green"
+              },
+              error: {
+                  fontSize: 18,
+                  color: "red"
+              }
+          }
+      }
+
     return (
 
       <div className='container'>
@@ -88,11 +114,10 @@ class App extends Component {
           <EmotionImage data={this.state.data} currentPrice={this.state.currentPrice} updatedAt={this.state.updatedAt} />
         : null }
         </div>
-          <div className='row'>
-              Subscribe to the Daily Bitcoin Girl Email List
-          </div>
+          <div className='row'><h2>Subscribe to the daily Bitcoin Girl Mailing list!</h2></div>
         <div className='row'>
-            <SubscribeForm/>
+
+            <SubscribeForm {...formProps}/>
         </div>
         <div className='row'>
           <div className='popup'>
