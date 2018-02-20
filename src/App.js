@@ -134,6 +134,10 @@ class App extends Component {
         <div className='row'>
           <div id="coindesk">Powered by <a href="http://www.coindesk.com/price/">CoinDesk</a></div>
         </div>
+
+          <div className='row'>
+              <div id="about">About this <a href="about.html">Webpage</a></div>
+          </div>
       </div>
     );
   }
