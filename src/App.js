@@ -7,6 +7,8 @@ import InfoBox from './InfoBox';
 import EmotionImage from './EmotionImage';
 import SubscribeForm from './SubscribeForm';
 
+import AdComponent from './AdComponent';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -99,8 +101,13 @@ class App extends Component {
       }
 
     return (
-
+	
       <div className='container'>
+	  
+	    <div className='row'>
+		  <AdComponent />
+		</div>
+	  
         <div className='row'>
           <h1>Bitcoin Girl 30 Days Bitcoin Price Chart</h1>
         </div>
