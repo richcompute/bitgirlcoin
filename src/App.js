@@ -143,7 +143,7 @@ class App extends Component {
         </div>
 
           <div className='row'>
-              <div id="about">About this <a href="about.html">Webpage</a></div>
+              <div id="policy"><a href="policy.html">Privacy Policy</a></div>
           </div>
       </div>
     );

@@ -7,11 +7,11 @@ export default class AdComponent extends React.Component {
 
 render () {
     return (
+      <div className='ad'>
         <ins className='adsbygoogle'
-          style={{ display: 'block' }}
-          data-ad-client='ca-pub-9159845052269180'
-          data-enable_page_level_ads='true'
-        />
+		  google_ad_client='ca-pub-9159845052269180'
+          enable_page_level_ads='true'/>
+      </div>
     );
   }
 }
