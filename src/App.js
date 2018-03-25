@@ -109,14 +109,14 @@ class App extends Component {
           <InfoBox data={this.state.data} currentPrice={this.state.currentPrice} updatedAt={this.state.updatedAt} />
           : null }
         </div>
+		<div className='row'><h2>Stocks Chart are better with a daily image. Come back tomorrow for a new picture!</h2></div>
         <div className='row'>
         { (!this.state.fetchingHistory && !this.state.fetchingPrice) ?
           <EmotionImage data={this.state.data} currentPrice={this.state.currentPrice} updatedAt={this.state.updatedAt} />
         : null }
         </div>
-          <div className='row'><h2>Subscribe to the daily Bitcoin Girl Mailing list!</h2></div>
+          <div className='row'><h2>Subscribe to the daily Bitcoin Girl Mailing list</h2></div>
         <div className='row'>
-
             <SubscribeForm {...formProps}/>
         </div>
         <div className='row'>
