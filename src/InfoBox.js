@@ -17,19 +17,14 @@ class InfoBox extends Component {
       const price = this.props.currentPrice;
       const updatedAt = this.props.updatedAt;
       
-      const monthChange = price - data[0].y;
-      const monthChangeP = (price - data[0].y) / data[0].y * 100;
-
-      const dayChange = price - data[data.length-1].y;
-      const dayChangeP = (price - data[data.length-1].y) / data[data.length-1].y * 100;
+      const dayChange = data[data.length-1].y - data[data.length-2].y;
+      const dayChangeP = (data[data.length-1].y - data[data.length-2].y) / data[data.length-2].y * 100;
           
       this.setState({
         currentPrice: price,
-        displayMonthChangeD: monthChange.toLocaleString('us-EN',{ style: 'currency', currency: 'USD' }),
-        displayMonthChangeP: monthChangeP.toFixed(2) + '%',
        
         displayDayChangeD: dayChange.toLocaleString('us-EN',{ style: 'currency', currency: 'USD' }),
-        displayDayChangeP: dayChangeP.toFixed(2) + '%',
+        displayDayChangeP: (dayChangeP >= 0 ? '+' : '0') + dayChangeP.toFixed(2) + '%',
         
         updatedAt: updatedAt
       })
